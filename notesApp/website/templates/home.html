@@ -1,0 +1,43 @@
+{% extends "base.html" %} {%block title %} Home {% endblock %}
+{%block content %}
+<h1 align= "center">Your Urls</h1>
+    <ul class = "list-group list-group-flush" id = "notes">
+        {%for note in user.notes() %}
+        <li class = "list-group-item">
+            URL Name : {{ note.title }} <br /> 
+            Long Url: {{note.long_url}} <br /> 
+            <button type = "button" class = "close" onClick= "deleteNote('{{ note._id}}')">
+                <span aria-hidden = "true">&times;</span>
+            </button>
+            Short Url: {{note.short}} <br /> 
+            Date Created: {{note.created}} <br /> 
+            Times Used: {{note.times_used}} <br /> 
+            
+        </li>
+        {% endfor %}
+    </ul>
+<br />
+<h2 align= "center"> Create a New Short URL</h2>
+<form method="POST">
+    <div class="form-group ">
+        <label for="url_title" class="col-xs-3 col-form-label mr-2">Title:</label>
+        <div class="col-md-100">
+        <input type="text" class="form-control" id="url_title" name="url_title" placeholder = "Enter the name you want to save with the URL">
+        </div>
+        </div>
+    <div class="form-group ">
+    <label for="long_url" class="col-xs-3 col-form-label mr-2">Long URL:</label>
+    <div class="col-md-100">
+    <input type="text" class="form-control" id="long_url" name="long_url" placeholder = "Enter the URL you wish to shorten">
+    </div>
+    </div>
+    
+    <div class="form-group row">
+    <div class="offset-xs-3 col-xs-9">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </div>
+    </form>
+    </div>
+
+{% endblock %}
